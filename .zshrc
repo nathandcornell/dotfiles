@@ -1,9 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/$USERNAME/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -53,18 +52,23 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git lol npm osx)
+plugins=(git rails lol npm osx)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 export JAVA_HOME=$(/usr/libexec/java_home)
 export JUNIT_HOME='/usr/local/java/junit'
-export CLASSPATH="$JUNIT_HOME/junit-4.12.jar:$JUNIT_HOME/hamcrest-core-1.3.jar:.:$CLASSPATH"
-export ECLIPSE_HOME="/Users/$USERNAME/Applications/Eclipse.app/Contents/Eclipse/"
 
 export PATH="/usr/local/opt/libpq/bin:$JAVA_HOME/bin:/Users/$USERNAME/.composer/vendor/bin:/Users/$USERNAME/.local/bin:/Users/$USERNAME/Library/Haskell/bin:/Users/$USERNAME/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin:/Users/$USERNAME/Applications:/Users/$USERNAME/bin:/usr/local/CrossPack-AVR/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
+#
+export PATH="$PATH:$(python3 -m site --user-base)/bin"
+export PATH="$HOME/.bin:$HOME/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/.asdf/installs/nodejs/8.7.0/.npm/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$PATH:/usr/local/opt/go/libexec/bin"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -99,9 +103,20 @@ alias ssh="ssh -C "
 # alias vim="/usr/local/bin/nvim"
 alias vi="/usr/local/bin/vim"
 alias vif='/usr/local/bin/vim $(fzf)'
-alias vimdiff="/usr/local/bin/nvim -d "
-# alias python="/usr/local/bin/python3"
-# alias python2="/usr/bin/python"
+
+# Python:
+alias python="python3"
+alias pip="/usr/local/bin/pip3"
+unalias rg
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+eval "$(pyenv init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+# iTerm2:
+source ~/.iterm2_shell_integration.zsh
+
+#Aliases
 alias yarn="$(which yarn) --ignore-engines"
 alias be="bundle exec"
 alias vim-changed="git status --porcelain | awk '{ print \$2 }' | xargs -o vim"
@@ -113,12 +128,14 @@ alias psql-real="/usr/local/bin/psql"
 alias gti="git"
 alias gits="git status"
 
-export PATH="$HOME/.bin:$HOME/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
-export PATH="$HOME/.asdf/installs/nodejs/8.7.0/.npm/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$PATH:/usr/local/opt/go/libexec/bin"
+# ASDF
 source /Users/nathancornell/.asdf/asdf.sh
+
+# Go
+export GOPATH="$HOME/workspace/go"
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Enable immediate history execution with '!!' (oh-my sets it to echo first but we can do this with tab):
 unsetopt histverify
@@ -129,14 +146,5 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # bind -x '"\C-p": vim $(fzf);' # bash-only command
 
-fortune -s | cowsay -p
-
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
-# Go
-export GOPATH="$HOME/workspace/go"
-
-# vi mode:
-# bindkey -v
-# export KEYTIMEOUT=1
+# Fun:
+fortune -sa | cowsay -p
