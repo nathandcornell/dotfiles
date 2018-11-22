@@ -1,0 +1,11 @@
+#!/bin/bash
+
+COMPARE_BRANCH="master"
+VIM=$( command -v vim )
+
+if [ "$#" -ne 0 ]; then
+  printf 'comparing against %s\n' "$1"
+  COMPARE_BRANCH=$1
+fi
+
+git --no-pager diff "$COMPARE_BRANCH..$( git rev-parse --abbrev-ref HEAD )" --name-only --diff-filter=AM | xargs -o "$VIM"
