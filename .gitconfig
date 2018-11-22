@@ -1,21 +1,44 @@
-# This is Git's per-user configuration file.
 [include]
   path = ~/.gitconfig-user.inc
+[filter "media"]
+  clean = git media clean %f
+  smudge = git media smudge %f
+  required = true
+[push]
+  default = simple
 [diff]
   tool = vimdiff
+[core]
+  editor = /usr/local/bin/vim
+  excludesfile = ~/.gitignore_global
+[mergetool]
+  path = /usr/local/bin/vim
 [difftool]
   prompt = false
 [alias]
+  amend = commit --amend
   b = branch
+  branches = branch -a
   c = commit
-  commmit = commit  # For extra yummy commits
   co = checkout
+  commmit = commit  # For extra yummy commits
   d = difftool
-  pu = push
-  pl = pull
-  s = status
+  discard = checkout --
+  graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
   ignore = update-index --assume-unchanged
+  nevermind = !git reset --hard HEAD && git clean -d -f
+  pl = pull
+  precommit = diff --cached --diff-algorithm=minimal -w
+  pu = push
+  s = status
+  stashes = stash list
+  tags = tag
+  uncommit = reset --mixed HEAD~
   unignore = update-index --no-assume-unchanged
-  ignored = !git ls-files -v | grep "^[[:lower:]]"
+  unstage = reset -q HEAD --
 [fetch]
   prune = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
