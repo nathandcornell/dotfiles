@@ -1,0 +1,21 @@
+# This is Git's per-user configuration file.
+[include]
+  path = ~/.gitconfig-user.inc
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
+[alias]
+  b = branch
+  c = commit
+  commmit = commit  # For extra yummy commits
+  co = checkout
+  d = difftool
+  pu = push
+  pl = pull
+  s = status
+  ignore = update-index --assume-unchanged
+  unignore = update-index --no-assume-unchanged
+  ignored = !git ls-files -v | grep "^[[:lower:]]"
+[fetch]
+  prune = true
