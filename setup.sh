@@ -38,6 +38,9 @@ ln -s "$SCRIPT_DIR"/vim "$HOME"/.vim
 echo "Installing vim plugins\n"
 source "$SCRIPT_DIR"/vim/setup.sh
 
+echo "Linking zsh theme\n"
+ln -s "$SCRIPT_DIR"/oh-my-zsh/n8.zsh-theme "$HOME"/.oh-my-zsh/themes/n8.zsh-theme
+
 echo "\nDONE!\n"
 echo "Create a .gitconfig-user.inc in $HOME like .gitconfig-user.inc.example"
 echo " to complete your git configuration\n"
