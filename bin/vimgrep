@@ -1,0 +1,1 @@
+rg -l "$1" | xargs -o vim

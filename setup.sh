@@ -10,7 +10,21 @@ for filename in "$SCRIPT_DIR"/profile/*; do
     echo "Linking $filename to $HOME/.$(basename $filename)"
   fi
 
-  # ln -s "$filename" "$HOME"/."$(basename $filename)"
+  ln -s "$filename" "$HOME"/."$(basename $filename)"
+done
+ 
+echo "Linking bin scripts\n"
+
+if [ ! -d "$HOME"/bin ]; then
+  mkdir "$HOME"/bin
+fi
+
+for filename in "$SCRIPT_DIR"/bin/*; do
+  if [ "$DEBUG" = "true" ]; then
+    echo "Linking $filename to $HOME/bin/$(basename $filename)"
+  fi
+
+  ln -s "$filename" "$HOME"/bin/"$(basename $filename)"
 done
 
 echo "Linking vim config\n"
@@ -19,11 +33,10 @@ if [ "$DEBUG" = "true" ]; then
   echo "Linking $SCRIPT_DIR/vim to $HOME/.vim"
 fi
 
-# ln -s "$SCRIPT_DIR"/vim "$HOME"/.vim
-
+ln -s "$SCRIPT_DIR"/vim "$HOME"/.vim
 
 echo "Installing vim plugins\n"
-# source "$SCRIPT_DIR"/vim/setup.sh
+source "$SCRIPT_DIR"/vim/setup.sh
 
 echo "\nDONE!\n"
 echo "Create a .gitconfig-user.inc in $HOME like .gitconfig-user.inc.example"

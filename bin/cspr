@@ -1,0 +1,23 @@
+#!/bin/sh
+BASE_BRANCH=''
+REVIEWERS='-r bitbier,dawnho,erachi'
+TAGS='-l "Needs Review"'
+
+while getopts ":b:l:r" opt; do
+  case $opt in
+    b)
+      BASE_BRANCH="-b $OPTARG"
+      ;;
+    r)
+      REVIEWERS="-r $OPTARG"
+      ;;
+    l)
+      TAGS="-l $OPTARG"
+      ;;
+    *)
+      echo "Unknown option -$OPTARG"
+      ;;
+  esac
+done
+
+echo hub pull-request "$BASE_BRANCH" "$TAGS" "$REVIEWERS"
