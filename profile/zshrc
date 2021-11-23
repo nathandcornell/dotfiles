@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +15,7 @@ export ZSH=$HOME/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="n8"
+# ZSH_THEME="n8"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -52,6 +59,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+# echo "loading plugins"
 plugins=(git rails lol npm osx)
 
 source $ZSH/oh-my-zsh.sh
@@ -102,7 +110,6 @@ alias vif='/usr/local/bin/vim $(fzf)'
 # alias python2="/usr/bin/python"
 alias yarn="$(which yarn) --ignore-engines"
 alias be="bundle exec"
-alias vim-changed="git status --porcelain | awk '{ print \$2 }' | xargs -o vim"
 alias git-branch-sorted="git for-each-ref --sort=committerdate refs/heads/ --format='%(color: red)%(committerdate:short) %(color: cyan)%(refname:short)'"
 alias git-rails-pull="git pull && bundle install && rails db:migrate && rails db:migrate RAILS_ENV=test"
 alias gitnp="git --no-pager"
@@ -111,12 +118,17 @@ alias psql-real="/usr/local/bin/psql"
 alias gti="git"
 alias gits="git status"
 alias pytest="PYTHONPATH=. pytest"
+alias dce="docker-compose exec"
+alias dcu="docker-compose up"
+alias pip="pip3"
+alias fb-rspec="docker-compose exec flatbook bundle exec rspec"
+alias fb-prod='eval $( sonder config aws -a prod -n production -c sonder-prod-1 )'
 
 export PATH="$HOME/.bin:$HOME/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="$PATH:/usr/local/opt/go/libexec/bin"
 
-# Enable immediate history execution with '!!' (oh-my sets it to echo first but we can do this with tab):
+# Enable immediate history execution with '!!\n' ('!!\t' instead to just print it):
 unsetopt histverify
 
 # fzf + ripgrep:
@@ -142,10 +154,41 @@ export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
 # bindkey -v
 # export KEYTIMEOUT=1
 
-# PyENV
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
+# PyENV: (see .zprofile for additional path updates)
+eval "$(pyenv init -)"
+
+# NVM
+# echo "loading nvm\n"
+# (updated)
+# if [ -s "$HOME/.nvm/nvm.sh" ]; then
+#   export NVM_DIR="$HOME/.nvm"
+#   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+#   alias nvm='unalias nvm node npm && \. "$NVM_DIR"/nvm.sh && nvm'
+#   alias node='unalias nvm node npm && \. "$NVM_DIR"/nvm.sh && node'
+#   alias npm='unalias nvm node npm && \. "$NVM_DIR"/nvm.sh && npm'
+# fi
+# Defer initialization of nvm until nvm, node or a node-dependent command is
+# run. Ensure this block is only run once if .bashrc gets sourced multiple times
+# by checking whether __init_nvm is a function.
+# if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type -t __init_nvm)" = function ]; then
+#   export NVM_DIR="$HOME/.nvm"
+#   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+#   declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack')
+#   function __init_nvm() {
+#     for i in "${__node_commands[@]}"; do unalias $i; done
+#     . "$NVM_DIR"/nvm.sh
+#     unset __node_commands
+#     unset -f __init_nvm
+#   }
+#   for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
+# fi
+# (original)
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # Aloha Development
 alias ri="(cd ~/workspace/archipelago/react-native/aloha && react-native run-ios)"
@@ -159,10 +202,30 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # rbenv
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+# echo "starting rbenv init\n"
+# (original)
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+# (updated)
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(dirname $(dirname $(which brew)))/opt/openssl@1.1"
+
 eval "$(rbenv init -)"
 
+# echo "sourcing cargo env\n"
 # Rust/Cargo
 source $HOME/.cargo/env
 
+# echo "Running Fortune\n"
 fortune -s | cowsay -p
+
+# NPM Token for Flatbook:
+export NPM_TOKEN="NpmToken.f36dc76b-a1dd-331b-96a8-4ba7f334d7dc"
+
+# Github token for Sonder:
+source $HOME/.homebrewrc
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

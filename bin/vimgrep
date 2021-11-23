@@ -1,1 +1,1 @@
-rg -l "$1" | xargs -o vim
+rg -l "$@" | xargs -o vim

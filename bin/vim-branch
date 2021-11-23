@@ -1,11 +1,22 @@
 #!/bin/bash
 
-COMPARE_BRANCH="master"
+HAS_MAIN=$( git --no-pager branch | grep "\<main\>" )
 VIM=$( command -v vim )
+CURRENT_DIR=$( basename "$( pwd )" )
+DIR_REGEX=".*$CURRENT_DIR\/"
+
+if [ -n "$HAS_MAIN" ]; then
+  COMPARE_BRANCH="main"
+else
+  COMPARE_BRANCH="master"
+fi
 
 if [ "$#" -ne 0 ]; then
-  printf 'comparing against %s\n' "$1"
   COMPARE_BRANCH=$1
 fi
 
-git --no-pager diff "$COMPARE_BRANCH..$( git rev-parse --abbrev-ref HEAD )" --name-only --diff-filter=AM | xargs -o "$VIM"
+printf 'comparing against %s\n' "$COMPARE_BRANCH"
+
+git --no-pager diff "$COMPARE_BRANCH..$( git rev-parse --abbrev-ref HEAD )" --name-only --diff-filter=AM\
+  | sed "s/$DIR_REGEX//"\
+  | xargs -o "$VIM"
