@@ -35,6 +35,11 @@ fi
 
 ln -s "$SCRIPT_DIR"/vim "$HOME"/.vim
 
+BREW_PACKAGE_LIST="$SCRIPT_DIR/brew-packages"
+BREW_PACKAGES="$( cat $BREW_PACKAGE_LIST | tr '\n' ' ')"
+echo "Installing utils with homebrew"
+brew install $BREW_PACKAGES
+
 echo "Installing vim plugins\n"
 source "$SCRIPT_DIR"/vim/setup.sh
 

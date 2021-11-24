@@ -19,13 +19,10 @@ neovim
 thoughtbot/formulae/parity
 pgcli
 postgresql@10
-pow
 prettier
 pyenv-virtualenv
-python@2
 rbenv
 reattach-to-user-namespace
-redis
 ripgrep
 shellcheck
 the_silver_searcher
