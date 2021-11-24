@@ -41,6 +41,9 @@ source "$SCRIPT_DIR"/vim/setup.sh
 echo "Linking zsh theme\n"
 ln -s "$SCRIPT_DIR"/oh-my-zsh/n8.zsh-theme "$HOME"/.oh-my-zsh/themes/n8.zsh-theme
 
+echo "Linking powerlevel 10K"
+ln -s "$SCRIPT_DIR"/p10k.zsh "$HOME"/.p10k.zsh
+
 echo "\nDONE!\n"
 echo "Create a .gitconfig-user.inc in $HOME like .gitconfig-user.inc.example"
 echo " to complete your git configuration\n"
