@@ -214,7 +214,7 @@ eval "$(rbenv init -)"
 
 # echo "sourcing cargo env\n"
 # Rust/Cargo
-source $HOME/.cargo/env
+[[ ! -f $HOME/.cargo/env ]] || source $HOME/.cargo/env
 
 # echo "Running Fortune\n"
 fortune -s | cowsay -p
@@ -226,7 +226,7 @@ export NPM_TOKEN="NpmToken.f36dc76b-a1dd-331b-96a8-4ba7f334d7dc"
 source $HOME/.homebrewrc
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+source $HOME/dotfiles/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
