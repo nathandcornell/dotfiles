@@ -1,5 +1,4 @@
 automake
-balena-cli
 blueutil
 cloc
 coreutils
@@ -18,7 +17,6 @@ nasm
 neovim
 thoughtbot/formulae/parity
 pgcli
-postgresql@10
 prettier
 pyenv-virtualenv
 rbenv
