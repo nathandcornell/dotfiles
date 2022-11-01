@@ -3,6 +3,7 @@ blueutil
 cloc
 coreutils
 cowsay
+curl
 docker-machine
 dos2unix
 fortune

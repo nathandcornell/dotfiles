@@ -71,7 +71,7 @@ export JUNIT_HOME='/usr/local/java/junit'
 export CLASSPATH="$JUNIT_HOME/junit-4.12.jar:$JUNIT_HOME/hamcrest-core-1.3.jar:.:$CLASSPATH"
 export ECLIPSE_HOME="/Users/$USERNAME/Applications/Eclipse.app/Contents/Eclipse/"
 
-export PATH="/usr/local/opt/libpq/bin:$JAVA_DIR/bin:$JAVA_HOME/bin:/Users/$USERNAME/.composer/vendor/bin:/Users/$USERNAME/.local/bin:/Users/$USERNAME/Library/Haskell/bin:/Users/$USERNAME/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin:/Users/$USERNAME/Applications:/Users/$USERNAME/bin:/usr/local/CrossPack-AVR/bin:$PATH"
+export PATH="$HOME/Library/Python/3.8/bin:$HOME/Library/Python/2.7/bin:/usr/local/opt/libpq/bin:$JAVA_DIR/bin:$JAVA_HOME/bin:/Users/$USERNAME/.composer/vendor/bin:/Users/$USERNAME/.local/bin:/Users/$USERNAME/Library/Haskell/bin:/Users/$USERNAME/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin:/Users/$USERNAME/Applications:/Users/$USERNAME/bin:/usr/local/CrossPack-AVR/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -221,9 +221,6 @@ fortune -s | cowsay -p
 
 # NPM Token for Flatbook:
 export NPM_TOKEN="NpmToken.f36dc76b-a1dd-331b-96a8-4ba7f334d7dc"
-
-# Github token for Sonder:
-source $HOME/.homebrewrc
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 source $HOME/dotfiles/powerlevel10k/powerlevel10k.zsh-theme

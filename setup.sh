@@ -2,6 +2,7 @@
 
 SCRIPT_PATH=$( realpath "$0" )
 SCRIPT_DIR=$( dirname "$SCRIPT_PATH" )
+DEBUG=$1
  
 echo "Linking profile config files\n"
 
@@ -39,6 +40,9 @@ BREW_PACKAGE_LIST="$SCRIPT_DIR/brew-packages"
 BREW_PACKAGES="$( cat $BREW_PACKAGE_LIST | tr '\n' ' ')"
 echo "Installing utils with homebrew"
 brew install $BREW_PACKAGES
+
+echo "Installing pip 2"
+python curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python
 
 echo "Installing vim plugins\n"
 source "$SCRIPT_DIR"/vim/setup.sh
