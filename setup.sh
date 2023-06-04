@@ -38,8 +38,12 @@ ln -s "$SCRIPT_DIR"/vim "$HOME"/.vim
 
 BREW_PACKAGE_LIST="$SCRIPT_DIR/brew-packages"
 BREW_PACKAGES="$( cat $BREW_PACKAGE_LIST | tr '\n' ' ')"
+
 echo "Installing utils with homebrew"
 brew install $BREW_PACKAGES
+
+echo "Linking JDK"
+sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 
 echo "Installing pip 2"
 python curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python

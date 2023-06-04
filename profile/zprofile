@@ -1,0 +1,3 @@
+# Set PATH, MANPATH, etc., for Homebrew.
+PATH=/usr/local/bin:/usr/local/sbin:~/bin:$PATH
+eval "$(/opt/homebrew/bin/brew shellenv)"

@@ -71,7 +71,11 @@ export JUNIT_HOME='/usr/local/java/junit'
 export CLASSPATH="$JUNIT_HOME/junit-4.12.jar:$JUNIT_HOME/hamcrest-core-1.3.jar:.:$CLASSPATH"
 export ECLIPSE_HOME="/Users/$USERNAME/Applications/Eclipse.app/Contents/Eclipse/"
 
-export PATH="$HOME/Library/Python/3.8/bin:$HOME/Library/Python/2.7/bin:/usr/local/opt/libpq/bin:$JAVA_DIR/bin:$JAVA_HOME/bin:/Users/$USERNAME/.composer/vendor/bin:/Users/$USERNAME/.local/bin:/Users/$USERNAME/Library/Haskell/bin:/Users/$USERNAME/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin:/Users/$USERNAME/Applications:/Users/$USERNAME/bin:/usr/local/CrossPack-AVR/bin:$PATH"
+export PATH="/opt/homebrew/opt/python@3.10/libexec/bin:$HOME/Library/Python/2.7/bin:/usr/local/opt/libpq/bin:$PATH"
+export PATH="$JAVA_DIR/bin:$JAVA_HOME/bin:/Users/$USERNAME/.composer/vendor/bin:/Users/$USERNAME/.local/bin:$PATH"
+export PATH="/Users/$USERNAME/Library/Haskell/bin:/Users/$USERNAME/.rvm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+export PATH="/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin:/Users/$USERNAME/Applications:/Users/$USERNAME/bin:$PATH"
+export PATH="/usr/local/CrossPack-AVR/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -107,8 +111,6 @@ alias ssh="ssh -C "
 # alias vim="/usr/local/bin/nvim"
 alias vi="/usr/local/bin/vim"
 alias vif='/usr/local/bin/vim $(fzf)'
-# alias python="/usr/local/bin/python3"
-# alias python2="/usr/bin/python"
 alias yarn="$(which yarn) --ignore-engines"
 alias be="bundle exec"
 alias git-branch-sorted="git for-each-ref --sort=committerdate refs/heads/ --format='%(color: red)%(committerdate:short) %(color: cyan)%(refname:short)'"
@@ -121,7 +123,6 @@ alias gits="git status"
 alias pytest="PYTHONPATH=. pytest"
 alias dce="docker-compose exec"
 alias dcu="docker-compose up"
-alias pip="pip3"
 alias fb-rspec="docker-compose exec flatbook bundle exec rspec"
 alias fb-prod='eval $( sonder config aws -a prod -n production -c sonder-prod-1 )'
 
@@ -145,11 +146,11 @@ export LANG=en_US.UTF-8
 export GOPATH="$HOME/workspace/go"
 
 # Zlib and SQLite (homebrew)
-export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib"
-export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include"
+# export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/sqlite/lib"
+# export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include"
 
 # SQLite (homebrew)
-export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
+# export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
 
 # vi mode:
 # bindkey -v
@@ -204,17 +205,13 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # rbenv
 # echo "starting rbenv init\n"
-# (original)
-# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-
-# (updated)
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(dirname $(dirname $(which brew)))/opt/openssl@1.1"
-
-eval "$(rbenv init -)"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+eval "$(rbenv init - zsh)"
 
 # echo "sourcing cargo env\n"
 # Rust/Cargo
 [[ ! -f $HOME/.cargo/env ]] || source $HOME/.cargo/env
+export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library
 
 # echo "Running Fortune\n"
 fortune -s | cowsay -p
@@ -227,3 +224,4 @@ source $HOME/dotfiles/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source ~/.zprofile

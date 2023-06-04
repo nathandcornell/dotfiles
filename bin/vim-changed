@@ -1,0 +1,10 @@
+#!/bin/bash
+
+VIM=$( command -v vim )
+CURRENT_DIR=$( basename "$( pwd )" )
+DIR_REGEX=".*$CURRENT_DIR\/"
+
+git status -s\
+  | awk '{print $2}'\
+  | sed "s/$DIR_REGEX//"\
+  | xargs -o "$VIM"

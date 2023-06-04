@@ -12,6 +12,7 @@ go
 graphviz
 hub
 imagemagick
+openjdk@17 
 jq
 jsonpp
 nasm
