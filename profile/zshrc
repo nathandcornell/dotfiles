@@ -102,15 +102,10 @@ export VISUAL='/usr/local/bin/vim'
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias bundle="nocorrect bundle"
 alias ssh="ssh -C "
-# alias vim="/usr/local/bin/nvim"
-alias vi="/usr/local/bin/vim"
-alias vif='/usr/local/bin/vim $(fzf)'
+alias vi="vim"
+alias vif='vim $(fzf)'
 alias yarn="$(which yarn) --ignore-engines"
 alias be="bundle exec"
 alias git-branch-sorted="git for-each-ref --sort=committerdate refs/heads/ --format='%(color: red)%(committerdate:short) %(color: cyan)%(refname:short)'"
