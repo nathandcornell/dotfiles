@@ -17,12 +17,10 @@ jq
 jsonpp
 nasm
 neovim
-thoughtbot/formulae/parity
 pgcli
 prettier
 pyenv-virtualenv
 rbenv
-reattach-to-user-namespace
 ripgrep
 shellcheck
 the_silver_searcher
