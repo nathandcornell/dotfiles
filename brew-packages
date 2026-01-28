@@ -1,5 +1,6 @@
 automake
 blueutil
+bun
 cloc
 colima
 coreutils
@@ -19,7 +20,7 @@ go
 graphviz
 hub
 imagemagick
-openjdk@17 
+iterm2
 jq
 jsonpp
 nasm
@@ -47,7 +48,6 @@ uv
 vim
 watch
 watchman
-yarn
 wget
 zlib
 zsh
