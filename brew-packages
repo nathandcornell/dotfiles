@@ -12,9 +12,11 @@ docker-compose
 docker-credential-helper
 docker-machine
 dos2unix
+drawio
 font-fira-code
 fortune
 fzf
+gimp
 gnutls
 go
 graphviz
@@ -30,6 +32,7 @@ ollama
 openjdk@17
 openssl@3
 pgcli
+postman
 prettier
 pyenv
 pyenv-virtualenv

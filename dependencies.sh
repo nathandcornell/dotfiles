@@ -6,7 +6,7 @@ SCRIPT_DIR=$( dirname "$SCRIPT_PATH" )
 # Install Homebrew:
 if ! command -v brew; then
   echo "Installing Homebrew\n"
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
 fi
 
 if ! command -v git; then
@@ -42,6 +42,10 @@ fi
 echo "Installing Homebrew packages\n"
 xargs brew install < "$SCRIPT_DIR"/brew-packages
 
+if ! command -v xcodebuild; then
+  echo "Installing XCode CLI"
+  xcode-select --install
+fi
+
 # TODO:
 # echo "Installing Node packages\n"
-
