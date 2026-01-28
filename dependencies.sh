@@ -26,9 +26,11 @@ if ! command -v pip3; then
   brew install python3
 fi
 
-if ! command -v pip2; then
-  echo "Installing Python2\n"
-  brew install python2
+if ! command -v bun; then
+  echo "installing bun"
+  curl -fsSLo /tmp/bun-install.sh https://bun.sh/install
+  chmod +x /tmp/bun-install.sh
+  /tmp/bun-install.sh
 fi
 
 if ! command -v pyenv; then

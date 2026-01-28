@@ -1,6 +1,7 @@
+msgpack
+python-lsp-server
 automake
 blueutil
-bun
 cloc
 colima
 coreutils

@@ -45,9 +45,6 @@ brew install $BREW_PACKAGES
 echo "Linking JDK"
 sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 
-echo "Installing pip 2"
-python curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python
-
 echo "Installing vim plugins\n"
 source "$SCRIPT_DIR"/vim/setup.sh
 
