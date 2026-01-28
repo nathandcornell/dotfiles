@@ -9,7 +9,12 @@ if ! command -v brew; then
   curl -fsSLo /tmp/hombrew-install.sh https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
   chmod +x /tmp/hombrew-install.sh
   /tmp/hombrew-install.sh
-  eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+  # Initialize brew for current shell (handles both Apple Silicon and Intel Macs)
+  if [ -x "/opt/homebrew/bin/brew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [ -x "/usr/local/bin/brew" ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
 fi
 
 if ! command -v git; then
@@ -32,7 +37,7 @@ if ! command -v bun; then
   curl -fsSLo /tmp/bun-install.sh https://bun.sh/install
   chmod +x /tmp/bun-install.sh
   /tmp/bun-install.sh
-  [ -s "/Users/nate/.bun/_bun" ] && source "/Users/nate/.bun/_bun"
+  [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 fi
 
 if ! command -v pyenv; then

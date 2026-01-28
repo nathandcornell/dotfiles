@@ -43,7 +43,14 @@ echo "Installing utils with homebrew"
 brew install $BREW_PACKAGES
 
 echo "Linking JDK"
-sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+# Handle both Apple Silicon (/opt/homebrew) and Intel (/usr/local) Macs
+if [ -d "/opt/homebrew/opt/openjdk/libexec/openjdk.jdk" ]; then
+  sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+elif [ -d "/usr/local/opt/openjdk/libexec/openjdk.jdk" ]; then
+  sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+else
+  echo "Warning: OpenJDK not found. Install it with: brew install openjdk"
+fi
 
 echo "Installing vim plugins\n"
 source "$SCRIPT_DIR"/vim/setup.sh
@@ -55,9 +62,6 @@ fi
 
 echo "Linking custom zsh theme\n"
 ln -s "$SCRIPT_DIR"/oh-my-zsh/n8.zsh-theme "$HOME"/.oh-my-zsh/themes/n8.zsh-theme
-
-echo "Linking powerlevel 10K"
-ln -s "$SCRIPT_DIR"/p10k.zsh "$HOME"/.p10k.zsh
 
 echo "\nDONE!\n"
 echo "Create a .gitconfig-user.inc in $HOME like .gitconfig-user.inc.example"
