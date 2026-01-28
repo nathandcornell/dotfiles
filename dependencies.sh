@@ -9,6 +9,7 @@ if ! command -v brew; then
   curl -fsSLo /tmp/hombrew-install.sh https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
   chmod +x /tmp/hombrew-install.sh
   /tmp/hombrew-install.sh
+  eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 fi
 
 if ! command -v git; then
@@ -31,6 +32,7 @@ if ! command -v bun; then
   curl -fsSLo /tmp/bun-install.sh https://bun.sh/install
   chmod +x /tmp/bun-install.sh
   /tmp/bun-install.sh
+  [ -s "/Users/nate/.bun/_bun" ] && source "/Users/nate/.bun/_bun"
 fi
 
 if ! command -v pyenv; then
