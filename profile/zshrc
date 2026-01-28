@@ -109,7 +109,6 @@ alias bundle="nocorrect bundle"
 alias ssh="ssh -C "
 alias vi="vim"
 alias vif='vim $(fzf)'
-alias yarn="$(which yarn) --ignore-engines"
 alias be="bundle exec"
 alias git-branch-sorted="git for-each-ref --sort=committerdate refs/heads/ --format='%(color: red)%(committerdate:short) %(color: cyan)%(refname:short)'"
 alias git-rails-pull="git pull && bundle install && rails db:migrate && rails db:migrate RAILS_ENV=test"
@@ -207,19 +206,33 @@ eval "$(rbenv init - zsh)"
 [[ ! -f $HOME/.cargo/env ]] || source $HOME/.cargo/env
 export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library
 
-# echo "Running Fortune\n"
-fortune -s | cowsay -p
+# STM32Cube microcontroller support
+export STM32_PRG_PATH=/Applications/STMicroelectronics/STM32Cube/STM32CubeProgrammer/STM32CubeProgrammer.app/Contents/MacOs/bin
+
+# bun completions
+[ -s "/Users/nate/.bun/_bun" ] && source "/Users/nate/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# XCode
+export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
 
 # Homebrew analytics
 export HOMEBREW_NO_ANALYTICS=1
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+### PROMPT ###
+
+# History
+HISTSIZE=10000
+SAVEHIST=10000
+
+# echo "Running Fortune\n"
+fortune -s | cowsay -p
+
 source $HOME/dotfiles/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source ~/.zprofile
-
-# History
-HISTSIZE=10000
-SAVEHIST=10000
