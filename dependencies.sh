@@ -6,17 +6,14 @@ SCRIPT_DIR=$( dirname "$SCRIPT_PATH" )
 # Install Homebrew:
 if ! command -v brew; then
   echo "Installing Homebrew\n"
-  curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+  curl -fsSLo /tmp/hombrew-install.sh https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+  chmod +x /tmp/hombrew-install.sh
+  /tmp/hombrew-install.sh
 fi
 
 if ! command -v git; then
   echo "Installing Git\n"
   brew install git
-fi
-
-if ! [ -d "$HOME/.oh-my-zsh" ]; then
-  echo "Installing Oh My Zsh\n"
-  git clone https://github.com/ohmyzsh/ohmyzsh.git "$HOME"/.oh-my-zsh
 fi
 
 if ! command -v npm; then
@@ -39,8 +36,9 @@ if ! command -v pyenv; then
   brew install pyenv
 fi
 
-echo "Installing Homebrew packages\n"
-xargs brew install < "$SCRIPT_DIR"/brew-packages
+# This is covered in the setup.sh script
+# echo "Installing Homebrew packages\n"
+# xargs brew install < "$SCRIPT_DIR"/brew-packages
 
 if ! command -v xcodebuild; then
   echo "Installing XCode CLI"

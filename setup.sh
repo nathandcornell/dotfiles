@@ -51,7 +51,12 @@ python curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python
 echo "Installing vim plugins\n"
 source "$SCRIPT_DIR"/vim/setup.sh
 
-echo "Linking zsh theme\n"
+if ! [ -d "$HOME/.oh-my-zsh" ]; then
+  echo "Installing Oh My Zsh\n"
+  git clone https://github.com/ohmyzsh/ohmyzsh.git "$HOME"/.oh-my-zsh
+fi
+
+echo "Linking custom zsh theme\n"
 ln -s "$SCRIPT_DIR"/oh-my-zsh/n8.zsh-theme "$HOME"/.oh-my-zsh/themes/n8.zsh-theme
 
 echo "Linking powerlevel 10K"
