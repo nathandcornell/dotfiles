@@ -37,13 +37,17 @@ ripgrep
 shellcheck
 sqlite
 subversion
+terraform
+terraform-ls
 the_silver_searcher
 tmux
 tree
 unixodbc
+uv
 vim
 watch
 watchman
 yarn
+wget
 zlib
 zsh
