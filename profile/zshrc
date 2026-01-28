@@ -65,12 +65,12 @@ plugins=(git rails lol npm macos)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export JAVA_DIR='/usr/local/opt/openjdk'
+export JAVA_DIR='/opt/homebrew/opt/openjdk@17'
 export JAVA_HOME=$(/usr/libexec/java_home)
 export JUNIT_HOME='/usr/local/java/junit'
 export CLASSPATH="$JUNIT_HOME/junit-4.12.jar:$JUNIT_HOME/hamcrest-core-1.3.jar:.:$CLASSPATH"
 export ECLIPSE_HOME="/Users/$USERNAME/Applications/Eclipse.app/Contents/Eclipse/"
-export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk@17/include"
 
 export PATH="/opt/homebrew/opt/python@3.10/libexec/bin:$HOME/Library/Python/2.7/bin:/usr/local/opt/libpq/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
@@ -78,6 +78,7 @@ export PATH="$JAVA_DIR/bin:$JAVA_HOME/bin:/Users/$USERNAME/.composer/vendor/bin:
 export PATH="/Users/$USERNAME/Library/Haskell/bin:/Users/$USERNAME/.rvm/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 export PATH="/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin:/Users/$USERNAME/Applications:/Users/$USERNAME/bin:$PATH"
 export PATH="/usr/local/CrossPack-AVR/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -89,8 +90,8 @@ export PATH="/usr/local/CrossPack-AVR/bin:$PATH"
 # else
 #   export EDITOR='mvim'
 # fi
-export EDITOR='/usr/local/bin/vim'
-export VISUAL='/usr/local/bin/vim'
+export EDITOR='/opt/homebrew/bin/vim'
+export VISUAL='/opt/homebrew/bin/vim'
 # PHP 7 to path
 # export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
 

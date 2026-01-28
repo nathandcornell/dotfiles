@@ -6,6 +6,7 @@ cowsay
 curl
 docker-machine
 dos2unix
+font-fira-code
 fortune
 fzf
 go

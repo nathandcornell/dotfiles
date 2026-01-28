@@ -6,31 +6,14 @@
 [difftool]
   prompt = false
 [alias]
-  b = branch
-  c = commit
-  commmit = commit  # For extra yummy commits
-  co = checkout
-  d = difftool
-  pu = push
-  pl = pull
   s = status
-  ignore = update-index --assume-unchanged
-  unignore = update-index --no-assume-unchanged
-  ignored = !git ls-files -v | grep "^[[:lower:]]"
-[fetch]
-  prune = true
-[credential]
-  helper = osxkeychain
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[url "git@github.com:"]
-	insteadof = https://github.com/
-[pull]
-	ff = only
-[init]
-	defaultBranch = main
-[core]
-	editor = vim
+  c = commit
+  co = checkout
+  cob = checkout -b
+  del = branch -D    
+  br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+  save = !git add -A && git commit -m 'chore: savepoint'
+  undo = reset HEAD~1 --mixed
+  res = !git reset --hard
+  done = !git push origin HEAD
+  lg = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
